@@ -60,3 +60,7 @@ if __name__ == "__main__":
     result = average_of_squares(numbers, weights)
     
     print(result)
+
+average_of_squares([1, 2, 4])
+
+average_of_squares([2, 4, 8])
