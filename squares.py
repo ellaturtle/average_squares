@@ -55,17 +55,20 @@ if __name__ == "__main__":
 
     parser = ArgumentParser(description="Compute weighted average of squares")
 
-    parser.add_argument("numbers", nargs='+', help="List of numbers (whitespace allowed)")
-    parser.add_argument("--weights", "-w", nargs='+', help="List of weights (whitespace allowed)")
+    parser.add_argument('filename', nargs=1, help="List of numbers (whitespace allowed)")
+    parser.add_argument("--weights", "-w", nargs=1, help="List of weights (whitespace allowed)")
     #parser.add_argument("--weights", "-w", nargs='+',)
     args = parser.parse_args()
-    
-      
-numbers = convert_numbers(args.numbers)
-if args.weights is not None:
-    weights = convert_numbers(args.weights)
-else:
-    weights = None
-    
-result = average_of_squares(numbers, weights)
-print(result)
+
+    with open(args.filename[0],'r') as file:
+        numbers = convert_numbers(file.readlines())
+
+
+    if args.weights is not None:
+        with open(args.weights[0], "r") as f:
+            weights = convert_numbers(f.readlines())
+    else:
+        weights = None
+        
+    result = average_of_squares(numbers, weights)
+    print(result)
