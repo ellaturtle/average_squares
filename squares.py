@@ -68,4 +68,4 @@ else:
     weights = None
     
 result = average_of_squares(numbers, weights)
-print(f"The weighted average of squares is: {result}")
+print(result)
