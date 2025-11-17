@@ -46,7 +46,7 @@ def convert_numbers(list_of_strings):
         # whitespace, and collect them into a single list...
         all_numbers.extend([token.strip() for token in s.split()])
     # ...then convert each substring into a number
-    return [int(number_string) for number_string in all_numbers]
+    return [float(number_string) for number_string in all_numbers]
 
 
 if __name__ == "__main__":
@@ -56,19 +56,16 @@ if __name__ == "__main__":
     parser = ArgumentParser(description="Compute weighted average of squares")
 
     parser.add_argument("numbers", nargs='+', help="List of numbers (whitespace allowed)")
+    parser.add_argument("--weights", "-w", nargs='+', help="List of weights (whitespace allowed)")
     #parser.add_argument("--weights", "-w", nargs='+',)
     args = parser.parse_args()
     
-
-# numbers_strings = ["1","2","4"]
-# weight_strings = ["1","1","1"]        
-    numbers = convert_numbers(args.numbers)
+      
+numbers = convert_numbers(args.numbers)
+if args.weights is not None:
+    weights = convert_numbers(args.weights)
+else:
     weights = None
     
-    result = average_of_squares(numbers, weights)
-    
-    print(result)
-
-#average_of_squares([1, 2, 4])
-
-#average_of_squares([2, 4, 8])
+result = average_of_squares(numbers, weights)
+print(f"The weighted average of squares is: {result}")
